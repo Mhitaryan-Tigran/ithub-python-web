@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Крылатое выражение</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<style>
+  .quote { min-height: 70vh; display: grid; place-content: center; text-align: center; gap: 16px; }
+  .quote h1 { font-size: clamp(2.5rem, 5vw + 1rem, 5rem); max-width: 860px; }
+</style>
+</head>
+<body>
+<main class="quote">
+  <p class="eyebrow">Крылатое выражение</p>
+  <h1>«{{ text }}»</h1>
+  <p class="muted">— {{ author }}</p>
+  <p><a href="/">Другое выражение ›</a></p>
+</main>
+</body>
+</html>

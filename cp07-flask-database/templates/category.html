@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}{{ categories[key] }}{% endblock %}
+{% block content %}
+<h1>{{ categories[key] }}</h1>
+<p class="lede">{{ items|length }} в списке.</p>
+{% if items %}
+<table>
+  <thead><tr><th>Название</th><th>Автор</th><th>Год</th><th></th></tr></thead>
+  <tbody>
+  {% for item in items %}
+  <tr>
+    <td><strong>{{ item.title }}</strong>{% if item.note %}<br><span class="meta">{{ item.note }}</span>{% endif %}</td>
+    <td>{{ item.author }}</td>
+    <td>{{ item.year or '—' }}</td>
+    <td><form method="post" action="{{ url_for('delete', item_id=item.id) }}"><button class="button plain" type="submit">Удалить</button></form></td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="empty">Пока пусто. <a href="{{ url_for('add') }}">Добавить первую запись ›</a></p>
+{% endif %}
+{% endblock %}

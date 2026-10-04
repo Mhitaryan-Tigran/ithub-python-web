@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block content %}
+<p class="eyebrow"><a href="{% url 'home' %}">‹ Все записи</a></p>
+<h1>{{ post.title }}</h1>
+<p class="meta" style="margin: 12px 0 28px">{{ post.created|date:"j E Y, H:i" }} · {{ post.author }}</p>
+<article class="post-body">{{ post.body }}</article>
+<div class="actions">
+  <a class="button plain" href="{% url 'post_edit' post.pk %}">Изменить</a>
+  <a class="button plain" href="{% url 'post_delete' post.pk %}">Удалить</a>
+</div>
+{% endblock %}

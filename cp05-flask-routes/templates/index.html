@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+    <main class="container py-5">
+        <h1>{{ greeting }}, user!</h1>
+        <p class="lead lede">Добро пожаловать на сайт. Сейчас {{ now.strftime('%H:%M') }}.</p>
+    </main>
+{% endblock %}

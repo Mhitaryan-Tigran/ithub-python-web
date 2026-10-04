@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Главная{% endblock %}
+{% block content %}
+<p class="eyebrow">Читательский дневник</p>
+<h1>Всё, что вы прочитали, — на одной полке.</h1>
+<p class="lede">Отмечайте книги, которые хотите прочитать, читаете сейчас и уже закрыли. Ставьте оценки и пишите пару строк о впечатлениях.</p>
+<div class="actions" style="margin-top: 0">
+  {% if current_user.is_authenticated %}
+  <a class="button" href="{{ url_for('books.new') }}">Добавить книгу</a>
+  {% else %}
+  <a class="button" href="{{ url_for('auth.signup') }}">Завести полку</a>
+  <a class="button plain" href="{{ url_for('auth.login') }}">Войти</a>
+  {% endif %}
+</div>
+<div class="stats">
+  <div class="stat"><b>{{ stats.users }}</b><span class="muted">читателей</span></div>
+  <div class="stat"><b>{{ stats.books }}</b><span class="muted">книг на полках</span></div>
+  <div class="stat"><b>{{ stats.done }}</b><span class="muted">прочитано</span></div>
+</div>
+<h2>Свежие отзывы</h2>
+{% for book in latest %}{% with show_owner=true, editable=false %}{% include '_book.html' %}{% endwith %}
+{% else %}<p class="empty">Отзывов пока нет — станьте первым.</p>{% endfor %}
+{% endblock %}

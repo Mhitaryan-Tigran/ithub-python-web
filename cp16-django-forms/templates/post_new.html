@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Новая запись{% endblock %}
+{% block content %}
+<h1>Новая запись</h1>
+<form class="stack card" method="post" style="margin-top: 24px">
+  {% csrf_token %}
+  {{ form.as_div }}
+  <div class="actions"><button type="submit">Опубликовать</button><a class="button plain" href="{% url 'home' %}">Отмена</a></div>
+</form>
+{% endblock %}

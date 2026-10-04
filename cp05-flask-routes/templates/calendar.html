@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Календарь{% endblock %}
+{% block content %}
+<main>
+  <h1>Календарь</h1>
+  <p class="lede">Ближайшие семь дней.</p>
+  <ul class="list">
+    {% for day in days %}
+    <li><span>{{ day.strftime('%d.%m.%Y') }}</span><span class="muted">{% if day == today %}сегодня{% else %}{{ ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'][day.weekday()] }}{% endif %}</span></li>
+    {% endfor %}
+  </ul>
+</main>
+{% endblock %}

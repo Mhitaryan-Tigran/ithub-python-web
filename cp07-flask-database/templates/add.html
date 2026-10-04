@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Новая запись{% endblock %}
+{% block content %}
+<div class="narrow">
+  <h1>Новая запись</h1>
+  <form class="stack card" method="post" style="margin-top: 24px">
+    <label>Категория
+      <select name="category">{% for key, name in categories.items() %}<option value="{{ key }}">{{ name }}</option>{% endfor %}</select>
+    </label>
+    <label>Название <input name="title" required></label>
+    <label>Автор или режиссёр <input name="author" required></label>
+    <label>Год <input name="year" inputmode="numeric"></label>
+    <label>Заметка <input name="note"></label>
+    <div class="actions"><button type="submit">Сохранить</button><a class="button plain" href="{{ url_for('index') }}">Отмена</a></div>
+  </form>
+</div>
+{% endblock %}

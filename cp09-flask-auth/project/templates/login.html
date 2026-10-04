@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Вход{% endblock %}
+{% block content %}
+<div class="narrow">
+  <h1>Вход</h1>
+  {% for message in get_flashed_messages() %}<p class="flash" style="margin-top: 20px">{{ message }}</p>{% endfor %}
+  <form class="stack card" method="post" action="{{ url_for('auth.login') }}" style="margin-top: 24px">
+    <label>Почта <input type="email" name="email" autocomplete="email" required autofocus></label>
+    <label>Пароль <input type="password" name="password" autocomplete="current-password" required></label>
+    <label class="checkbox"><input type="checkbox" name="remember"> Запомнить меня</label>
+    <button type="submit">Войти</button>
+  </form>
+  <p class="muted">Нет аккаунта? <a href="{{ url_for('auth.signup') }}">Зарегистрируйтесь</a></p>
+</div>
+{% endblock %}

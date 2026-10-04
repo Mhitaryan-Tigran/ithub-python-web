@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}{{ article.title }}{% endblock %}
+{% block content %}
+<div class="narrow" style="max-width: 720px">
+  <p class="eyebrow"><a href="{% url 'article_list' %}">‹ Все статьи</a> · {{ article.get_section_display }}</p>
+  <h1>{{ article.title }}</h1>
+  <p class="byline" style="margin-top: 12px">{{ article.author }} · {{ article.date|date:"j E Y, H:i" }}</p>
+  <article class="article-body">{{ article.body }}</article>
+  {% if user == article.author %}
+  <div class="actions">
+    <a class="button plain" href="{% url 'article_edit' article.pk %}">Изменить</a>
+    <a class="button plain" href="{% url 'article_delete' article.pk %}">Удалить</a>
+  </div>
+  {% endif %}
+  <section class="comments" id="comments">
+    <h2>Комментарии · {{ article.comments.count }}</h2>
+    {% for comment in article.comments.all %}
+    <div class="comment"><b>{{ comment.author }}</b> <span class="byline">{{ comment.date|date:"j E, H:i" }}</span><p style="margin: 4px 0 0">{{ comment.text }}</p></div>
+    {% empty %}
+    <p class="muted">Комментариев пока нет.</p>
+    {% endfor %}
+    {% if user.is_authenticated %}
+    <form class="comment-form" method="post" action="{% url 'comment_new' article.pk %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Отправить</button>
+    </form>
+    {% else %}
+    <p class="muted"><a href="{% url 'login' %}?next={{ request.path }}">Войдите</a>, чтобы оставить комментарий.</p>
+    {% endif %}
+  </section>
+</div>
+{% endblock %}

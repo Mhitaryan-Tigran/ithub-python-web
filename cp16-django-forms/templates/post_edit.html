@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Изменить запись{% endblock %}
+{% block content %}
+<h1>Изменить запись</h1>
+<form class="stack card" method="post" style="margin-top: 24px">
+  {% csrf_token %}
+  {{ form.as_div }}
+  <div class="actions"><button type="submit">Сохранить</button><a class="button plain" href="{{ post.get_absolute_url }}">Отмена</a></div>
+</form>
+{% endblock %}

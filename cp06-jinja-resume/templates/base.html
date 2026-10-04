@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<style>
+  .head { display: flex; align-items: center; gap: 24px; }
+  .avatar { display: grid; place-items: center; width: 96px; height: 96px; border-radius: 50%; background: linear-gradient(160deg, #e8f1ff, #cfe2ff); color: var(--accent); font-size: 36px; font-weight: 700; flex: none; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .tag { padding: 4px 10px; border-radius: 999px; background: var(--fill); font-size: 13px; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 640px) { .two { grid-template-columns: 1fr; } .head { flex-direction: column; align-items: flex-start; } }
+</style>
+</head>
+<body>
+{% block content %}{% endblock %}
+</body>
+</html>

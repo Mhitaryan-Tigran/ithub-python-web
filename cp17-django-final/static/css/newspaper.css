@@ -1,0 +1,24 @@
+.masthead { padding: 8px 0 32px; border-bottom: 1px solid var(--separator); margin-bottom: 32px; }
+.masthead .date { color: var(--label-2); font-size: 14px; }
+.lead-story { display: grid; gap: 12px; padding: 36px; border-radius: 24px; background: var(--surface); box-shadow: var(--shadow); }
+.lead-story h2 { margin: 0; font: 700 clamp(2rem, 2.4vw + 1rem, 3rem)/1.1 -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif; letter-spacing: -0.03em; }
+.lead-story h2 a { color: var(--label); }
+.lead-story h2 a:hover { color: var(--accent); text-decoration: none; }
+.section-tag { align-self: flex-start; justify-self: start; padding: 3px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 12px; font-weight: 600; }
+.story { display: flex; flex-direction: column; gap: 8px; }
+.story h3 a { color: var(--label); }
+.excerpt { color: var(--label-2); }
+.byline { color: var(--label-2); font-size: 14px; }
+.article-body { font-size: 19px; line-height: 1.65; white-space: pre-line; margin-top: 28px; }
+.comments { margin-top: 48px; }
+.comment { padding: 14px 0; border-top: 1px solid var(--separator); }
+.comment b { font-weight: 600; }
+.comment-form { display: flex; gap: 10px; margin-top: 16px; }
+.comment-form p { flex: 1; margin: 0; }
+.tabs { display: inline-flex; flex-wrap: wrap; padding: 2px; border-radius: 10px; background: var(--fill); margin-bottom: 24px; }
+.tabs a { padding: 6px 14px; border-radius: 8px; color: var(--label); font-size: 14px; }
+.tabs a.on { background: var(--surface); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12); font-weight: 600; text-decoration: none; }
+.form-card div { display: grid; gap: 6px; }
+.form-card label { font-weight: 500; }
+.pagination { display: flex; justify-content: space-between; margin-top: 24px; }
+@media (max-width: 640px) { .lead-story { padding: 24px; } .comment-form { flex-direction: column; } }

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Удалить запись{% endblock %}
+{% block content %}
+<h1>Удалить запись?</h1>
+<p class="lede">«{{ post.title }}» исчезнет из блога навсегда.</p>
+<form method="post">
+  {% csrf_token %}
+  <div class="actions"><button class="button danger" type="submit">Удалить</button><a class="button plain" href="{{ post.get_absolute_url }}">Отмена</a></div>
+</form>
+{% endblock %}

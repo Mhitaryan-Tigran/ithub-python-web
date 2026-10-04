@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}О сайте{% endblock %}
+{% block content %}
+<p class="eyebrow">Приложение Pages</p>
+<h1>О сайте</h1>
+<p class="lede">Резюме перенесено с Flask на Django. Страницы — представления на основе класса <code>TemplateView</code>, шаблоны наследуют общий <code>base.html</code>, а стили подключаются тегом <code>{% templatetag openblock %} static {% templatetag closeblock %}</code>.</p>
+<ul class="list">
+  <li><span>Фреймворк</span><span class="muted">Django 5</span></li>
+  <li><span>Представления</span><span class="muted">TemplateView</span></li>
+  <li><span>Шаблоны</span><span class="muted">base.html, home.html, about.html</span></li>
+</ul>
+{% endblock %}

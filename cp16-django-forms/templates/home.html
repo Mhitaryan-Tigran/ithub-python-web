@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Все записи{% endblock %}
+{% block content %}
+<p class="eyebrow">Блог</p>
+<h1>Заметки разработчика.</h1>
+<p class="lede">Коротко о том, что узнал, пока делал учебные проекты на Python.</p>
+{% for post in post_list %}
+<article class="card post-card">
+  <p class="meta">{{ post.created|date:"j E Y" }} · {{ post.author }}</p>
+  <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+  <p class="excerpt">{{ post.body|truncatewords:28 }}</p>
+</article>
+{% empty %}
+<p class="empty">Записей пока нет.</p>
+{% endfor %}
+{% endblock %}

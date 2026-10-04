@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Блог{% endblock %}
+{% block content %}
+<main>
+  <h1>Блог</h1>
+  <p class="lede">Заметки о том, как устроено это приложение.</p>
+  {% for title, text in posts %}
+  <article class="card"><h3>{{ title }}</h3><p class="muted">{{ text }}</p></article>
+  {% endfor %}
+</main>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Блог{% endblock %} — заметки разработчика</title>
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+<style>
+  .post-body { font-size: 19px; line-height: 1.6; white-space: pre-line; }
+  .post-card p.excerpt { margin-top: 8px; color: var(--label-2); }
+</style>
+</head>
+<body>
+<header class="nav">
+  <nav class="nav-inner">
+    <a class="brand" href="{% url 'home' %}">Заметки разработчика</a>
+    <ul class="nav-links">{% block nav %}<li><a href="{% url 'home' %}">Все записи</a></li>{% endblock %}</ul>
+  </nav>
+</header>
+<main class="narrow">{% block content %}{% endblock %}</main>
+<footer class="footer"><div class="footer-inner">Блог на Django · Мхитарян Тигран, ИСП9</div></footer>
+</body>
+</html>

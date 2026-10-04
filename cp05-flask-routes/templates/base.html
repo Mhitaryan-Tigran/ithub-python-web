@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Приветствие{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="nav">
+  <nav class="nav-inner">
+    <a class="brand" href="{{ url_for('index') }}">Приветствие</a>
+    <ul class="nav-links">
+      <li><a href="{{ url_for('blog') }}" {% if request.endpoint == 'blog' %}class="active"{% endif %}>Блог</a></li>
+      <li><a href="{{ url_for('calendar') }}" {% if request.endpoint == 'calendar' %}class="active"{% endif %}>Календарь</a></li>
+    </ul>
+  </nav>
+</header>
+{% block content %}{% endblock %}
+</body>
+</html>

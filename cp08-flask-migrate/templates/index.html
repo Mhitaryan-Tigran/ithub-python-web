@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if group %}
+<p class="eyebrow">{{ group.speciality }}</p>
+<h1>Группа {{ group.code }}</h1>
+<p class="lede">{{ students|length }} в списке, средний возраст {{ '%.1f'|format(avg_age) }}.</p>
+<div class="actions" style="margin: 0 0 20px">
+  <a class="button {% if not gender %}{% else %}plain{% endif %}" href="{{ url_for('index') }}">Все</a>
+  <a class="button {% if gender == 'женский' %}{% else %}plain{% endif %}" href="{{ url_for('index', gender='женский') }}">Девушки</a>
+  <a class="button {% if gender == 'мужской' %}{% else %}plain{% endif %}" href="{{ url_for('index', gender='мужской') }}">Юноши</a>
+</div>
+<table>
+  <thead><tr><th>Студент</th><th>Пол</th><th>Возраст</th><th>Цвет волос</th><th>Цвет глаз</th></tr></thead>
+  <tbody>
+  {% for s in students %}
+  <tr><td><a href="{{ url_for('student', student_id=s.id) }}">{{ s.last_name }} {{ s.first_name }}</a></td><td>{{ s.gender }}</td><td>{{ s.age }}</td><td>{{ s.hair }}</td><td>{{ s.eyes }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="empty">База пуста. Выполните <code>flask --app app seed</code>.</p>
+{% endif %}
+{% endblock %}

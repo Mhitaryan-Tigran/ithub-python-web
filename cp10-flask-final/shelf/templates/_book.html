@@ -1,0 +1,15 @@
+<article class="card book">
+  <div>
+    <span class="badge {{ book.status }}">{{ book.status_name }}</span>
+    <h3 style="margin-top: 10px">{{ book.title }}</h3>
+    <p class="meta">{{ book.author }}{% if show_owner %} · читает <a href="{{ url_for('books.reader', user_id=book.owner.id) }}">{{ book.owner.name }}</a>{% endif %}</p>
+    {% if book.rating %}<p class="stars" aria-label="Оценка {{ book.rating }} из 5">{{ '★' * book.rating }}{{ '☆' * (5 - book.rating) }}</p>{% endif %}
+    {% if book.review %}<blockquote>{{ book.review }}</blockquote>{% endif %}
+  </div>
+  {% if editable %}
+  <div class="book-actions">
+    <a class="button plain" href="{{ url_for('books.edit', book_id=book.id) }}">Изменить</a>
+    <form method="post" action="{{ url_for('books.delete', book_id=book.id) }}"><button class="button plain" type="submit">Удалить</button></form>
+  </div>
+  {% endif %}
+</article>

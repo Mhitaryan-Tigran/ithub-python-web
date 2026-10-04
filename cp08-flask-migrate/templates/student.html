@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}{{ s.first_name }} {{ s.last_name }}{% endblock %}
+{% block content %}
+<p class="eyebrow"><a href="{{ url_for('index') }}">‹ Группа {{ s.group.code }}</a></p>
+<h1>{{ s.first_name }} {{ s.last_name }}</h1>
+<ul class="list" style="margin-top: 32px">
+  <li><span>Пол</span><span class="muted">{{ s.gender }}</span></li>
+  <li><span>Возраст</span><span class="muted">{{ s.age }}</span></li>
+  <li><span>Цвет волос</span><span class="muted">{{ s.hair }}</span></li>
+  <li><span>Цвет глаз</span><span class="muted">{{ s.eyes }}</span></li>
+  <li><span>Увлечение</span><span class="muted">{{ s.hobby }}</span></li>
+</ul>
+{% endblock %}

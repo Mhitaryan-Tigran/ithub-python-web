@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}{% if object %}Изменить статью{% else %}Новая статья{% endif %}{% endblock %}
+{% block content %}
+<div class="narrow">
+  <h1>{% if object %}Изменить статью{% else %}Новая статья{% endif %}</h1>
+  <form class="stack card form-card" method="post" style="margin-top: 24px">
+    {% csrf_token %}
+    {{ form.as_div }}
+    <div class="actions"><button type="submit">Опубликовать</button><a class="button plain" href="{% if object %}{{ object.get_absolute_url }}{% else %}{% url 'article_list' %}{% endif %}">Отмена</a></div>
+  </form>
+</div>
+{% endblock %}

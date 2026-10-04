@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}{{ r.name }} — резюме{% endblock %}
+{% block content %}
+<header class="head">
+  <div class="avatar" aria-hidden="true">ТМ</div>
+  <div>
+    <p class="eyebrow">{{ r.role }} · {{ r.city }}</p>
+    <h1>{{ r.name }}</h1>
+    <p class="muted"><a href="https://github.com/Mhitaryan-Tigran">GitHub</a></p>
+  </div>
+</header>
+<p class="lede">{{ r.about }}</p>
+
+<h2>Опыт</h2>
+{% for job in r.experience %}
+<article class="card">
+  <h3>{{ job.role }}, {{ job.place }}</h3>
+  <p class="meta">{{ job.period }}</p>
+  <ul>{% for point in job.points %}<li>{{ point }}</li>{% endfor %}</ul>
+</article>
+{% endfor %}
+
+<h2>Проекты <span class="muted">· {{ r.projects|length }}</span></h2>
+<div class="grid">
+  {% for p in r.projects %}
+  <article class="card"><h3>{{ p.name }}</h3><p class="muted">{{ p.text }}</p><div class="tags">{% for s in p.stack %}<span class="tag">{{ s }}</span>{% endfor %}</div></article>
+  {% endfor %}
+</div>
+
+<h2>Навыки</h2>
+<article class="card">
+  {% for group, items in r.skills.items %}
+  <p class="meta">{{ group }}</p><div class="tags">{% for item in items %}<span class="tag">{{ item }}</span>{% endfor %}</div>
+  {% endfor %}
+</article>
+{% endblock %}

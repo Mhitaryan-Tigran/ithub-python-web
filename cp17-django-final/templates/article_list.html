@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Все статьи{% endblock %}
+{% block content %}
+<h1>Все статьи</h1>
+<p class="lede">{{ paginator.count }} материалов в архиве.</p>
+<nav class="tabs" aria-label="Рубрики">
+  <a href="{% url 'article_list' %}" {% if not active %}class="on"{% endif %}>Все</a>
+  {% for key, name in sections %}<a href="?section={{ key }}" {% if active == key %}class="on"{% endif %}>{{ name }}</a>{% endfor %}
+</nav>
+{% for article in article_list %}
+<article class="card story">
+  <span class="section-tag">{{ article.get_section_display }}</span>
+  <h3><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h3>
+  <p class="excerpt">{{ article.body|truncatewords:30 }}</p>
+  <p class="byline">{{ article.author }} · {{ article.date|date:"j E Y" }} · {{ article.comments.count }} комм.</p>
+</article>
+{% empty %}
+<p class="empty">В этой рубрике пока пусто.</p>
+{% endfor %}
+{% if is_paginated %}
+<nav class="pagination">
+  {% if page_obj.has_previous %}<a href="?page={{ page_obj.previous_page_number }}">‹ Новее</a>{% else %}<span></span>{% endif %}
+  {% if page_obj.has_next %}<a href="?page={{ page_obj.next_page_number }}">Старше ›</a>{% endif %}
+</nav>
+{% endif %}
+{% endblock %}

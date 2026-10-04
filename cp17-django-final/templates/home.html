@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="masthead">
+  <p class="date">{% now "l, j E Y" %}</p>
+  <h1>Газета IThub</h1>
+  <p class="lede" style="margin-bottom: 0">Новости колледжа, учёба и студенческая жизнь — пишут сами студенты.</p>
+</header>
+{% if lead %}
+<article class="lead-story">
+  <span class="section-tag">{{ lead.get_section_display }}</span>
+  <h2><a href="{{ lead.get_absolute_url }}">{{ lead.title }}</a></h2>
+  <p class="excerpt">{{ lead.body|truncatewords:40 }}</p>
+  <p class="byline">{{ lead.author }} · {{ lead.date|date:"j E" }}</p>
+</article>
+<h2>Свежие материалы</h2>
+<div class="grid">
+  {% for article in latest %}
+  <article class="card story">
+    <span class="section-tag">{{ article.get_section_display }}</span>
+    <h3><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h3>
+    <p class="byline">{{ article.author }} · {{ article.date|date:"j E" }}</p>
+  </article>
+  {% endfor %}
+</div>
+<div class="actions"><a class="button plain" href="{% url 'article_list' %}">Все статьи ›</a></div>
+{% else %}
+<p class="empty">Статей пока нет. <a href="{% url 'article_new' %}">Напишите первую ›</a></p>
+{% endif %}
+{% endblock %}

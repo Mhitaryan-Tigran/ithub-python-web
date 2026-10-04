@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Моя полка{% endblock %}
+{% block content %}
+<p class="eyebrow">Профиль</p>
+<h1>{{ current_user.name }}</h1>
+<p class="lede">{{ current_user.about or 'На полке ' ~ current_user.books|length ~ ' книг.' }}</p>
+<nav class="tabs" aria-label="Фильтр">
+  <a href="{{ url_for('books.profile') }}" {% if not status %}class="on"{% endif %}>Все · {{ current_user.books|length }}</a>
+  {% for key, name in statuses.items() %}<a href="{{ url_for('books.profile', status=key) }}" {% if status == key %}class="on"{% endif %}>{{ name }} · {{ counts[key] }}</a>{% endfor %}
+</nav>
+{% for book in books %}{% with show_owner=false, editable=true %}{% include '_book.html' %}{% endwith %}
+{% else %}<p class="empty">Здесь пока пусто. <a href="{{ url_for('books.new') }}">Добавить книгу ›</a></p>{% endfor %}
+{% endblock %}

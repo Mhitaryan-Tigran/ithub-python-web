@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<p class="eyebrow">База данных SQLite</p>
+<h1>Что мне нравится.</h1>
+<p class="lede">Музыка, фильмы и книги, которые я советую. Записи хранятся в базе данных, их можно добавлять и удалять.</p>
+<div class="grid">
+  {% for key, name in categories.items() %}
+  <a class="card" href="{{ url_for('category', category=key) }}">
+    <h3>{{ name }}</h3>
+    <p class="muted">{{ counts[key] }} {{ 'запись' if counts[key] % 10 == 1 and counts[key] % 100 != 11 else ('записи' if counts[key] % 10 in [2, 3, 4] and counts[key] % 100 not in [12, 13, 14] else 'записей') }}</p>
+  </a>
+  {% endfor %}
+</div>
+{% endblock %}

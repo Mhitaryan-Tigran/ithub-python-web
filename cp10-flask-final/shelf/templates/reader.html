@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}{{ user.name }}{% endblock %}
+{% block content %}
+<p class="eyebrow">Читатель</p>
+<h1>{{ user.name }}</h1>
+<p class="lede">{{ user.about }}</p>
+{% for book in user.books %}{% with show_owner=false, editable=(current_user.is_authenticated and current_user.id == user.id) %}{% include '_book.html' %}{% endwith %}
+{% else %}<p class="empty">Полка пуста.</p>{% endfor %}
+{% endblock %}

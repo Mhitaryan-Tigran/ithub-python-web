@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}{{ 'Изменить книгу' if book else 'Новая книга' }}{% endblock %}
+{% block content %}
+<div class="narrow">
+  <h1>{{ 'Изменить книгу' if book else 'Новая книга' }}</h1>
+  <form class="stack card" method="post" style="margin-top: 24px">
+    <label>Название <input name="title" value="{{ request.form.title or (book.title if book else '') }}" required autofocus></label>
+    <label>Автор <input name="author" value="{{ request.form.author or (book.author if book else '') }}" required></label>
+    <label>Статус
+      <select name="status">{% for key, name in statuses.items() %}<option value="{{ key }}" {% if (request.form.status or (book.status if book else 'want')) == key %}selected{% endif %}>{{ name }}</option>{% endfor %}</select>
+    </label>
+    <label>Оценка
+      <select name="rating"><option value="">Без оценки</option>{% for n in range(5, 0, -1) %}<option value="{{ n }}" {% if book and book.rating == n %}selected{% endif %}>{{ '★' * n }}</option>{% endfor %}</select>
+    </label>
+    <label>Отзыв <textarea name="review" placeholder="Пара строк о впечатлениях">{{ request.form.review or (book.review if book else '') }}</textarea></label>
+    <div class="actions"><button type="submit">Сохранить</button><a class="button plain" href="{{ url_for('books.profile') }}">Отмена</a></div>
+  </form>
+</div>
+{% endblock %}
